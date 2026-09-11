@@ -154,7 +154,43 @@ Automatic Initial Pass                      Slack Review
                          v
                 Update Agent Workload
 ```
+## Project Screenshots
 
+### n8n Automation Architecture
+
+The complete TalentFlow workflow coordinates recruitment requirement management, candidate intake, AI evaluation, conditional human review, and recruitment agent assignment.
+
+![TalentFlow n8n Workflow](screenshots/n8n-talentflow.png.jpg)
+
+### Recruitment Requirements Management
+
+Hiring managers can maintain position requirements through structured submissions. Requirement documents are processed by TalentFlow and used to update the recruitment knowledge base.
+
+![Manager Requirements](screenshots/drive-manager.png.jpg)
+
+### Candidate CV Storage
+
+Original candidate CV files are preserved in Google Drive, allowing recruiters to access the source document when necessary.
+
+![Candidate CV Storage](screenshots/drive-cv-storage.png.jpg)
+
+### RAG Vector Knowledge Base
+
+Recruitment requirements are converted into embeddings and stored in Supabase, allowing TalentFlow to retrieve position-specific criteria during AI candidate evaluation.
+
+![Supabase Vector Store](screenshots/supabase-vector-storage.png.jpg)
+
+### Recruitment Agent Management
+
+TalentFlow maintains recruitment agent specialization, status, maximum candidate capacity, and current workload in Supabase to support automated candidate assignment.
+
+![Recruitment Agent Database](screenshots/supabase.png.jpg)
+
+### Conditional Human Review
+
+Candidates requiring manual intervention are escalated to Slack. Recruiters can inspect the AI evaluation and approve or reject the candidate directly from the review interface.
+
+![Slack Candidate Review](screenshots/slack-notif.png.jpg)
 ## Core Workflow
 
 1. A hiring manager defines or updates recruitment requirements through a structured email.
@@ -180,15 +216,16 @@ Automatic Initial Pass                      Slack Review
 |---|---|
 | n8n | Workflow orchestration, branching, integrations, and automation logic |
 | Gmail | Applicant intake and hiring-manager requirement submissions |
-| Supabase | Recruitment database and operational data storage |
-| Supabase Vector Store | Recruitment requirement storage and RAG retrieval |
-| OpenAI | Candidate classification, evaluation, embeddings, and structured AI outputs |
-| Slack | Human review and recruiter decision actions |
 | Google Drive | CV and recruitment requirement file management |
+| Supabase | Recruitment database and operational data storage |
+| Supabase Vector Store | Vector storage and retrieval of job-specific recruitment requirements |
+| OpenAI | Candidate classification, evaluation, and structured AI outputs |
+| OpenAI Embeddings | Converts recruitment requirements into vector embeddings for semantic retrieval and RAG |
+| Slack | Conditional human review and recruiter decision actions |
 | PostgreSQL | Structured recruitment data management |
 | JavaScript | Custom data transformation and workflow logic |
-| REST APIs / HTTP Requests | Communication with external services |
-| Webhooks | Processing interactive actions and workflow events |
+| REST APIs / HTTP Requests | Communication with external services and database operations |
+| Webhooks | Processing Slack interactions and workflow events |
 
 ## Technical Implementation
 
